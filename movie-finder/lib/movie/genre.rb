@@ -8,6 +8,13 @@ class Genre
    list
  end
 
+ def print_list_by_rating(rating)
+   @rating = Scraper.rating
+   @rating.sort.reverse
+   #should sort by descending order
+
+ end
+
 
 
 

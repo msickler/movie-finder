@@ -47,7 +47,9 @@ end
   end
 
   def scrape_rating
-    rating = self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
+    @rating = []
+    self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
+    @rating << self
   end
 
   def scrape_description(movie)
@@ -56,8 +58,9 @@ end
     description_in = Nokogiri::HTML(open(self.link))
     description = self.description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     return description
-    #how do we get a description of a selected movie that is in a separate page. How do we link all this?
-    #list of genres - genre - list of movies - movie - description. o m g we haven't done this
+    #does @movie take the movie (input) from cli
+    #how to select the specific link value from the movie to then send nokogiri there?
+    #list of genres - genre - list of movies - movie - description.
   end
 
 
