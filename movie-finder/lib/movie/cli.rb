@@ -82,6 +82,11 @@ class Cli
   end
   @genre = input
   # i want to translate this input to a variable genre i can use across the board
+  loop do #i want these methods to be able to run in line like this if user doesnt say anything else
+    select_movie
+    find
+    randomize
+  end
 end
 
 
