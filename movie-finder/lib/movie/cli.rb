@@ -10,7 +10,7 @@ class Cli
   #anyway this is what i have
 
   def initialize(genre = nil)
-    @@genre
+    @@genre = genre
   end
 
   def call
@@ -97,12 +97,11 @@ end
     input = gets.strip
     @movie = input
     Scraper.scrape_movie_index.detect do |title| title.name == @movie
-      return @movie.description
+      Scraper.scrape_description(movie)
     else
       puts "Try me again"
     end
     end
-    self.select_movie
   end
 
   def find
@@ -111,9 +110,13 @@ end
     puts "Say 'Find by name' or 'Find by rating'"
     input = gets.strip
     if input == "Find by name"
-      Finder.find_by_name(input)
+      puts "Great, what name?"
+      input = gets.strip 
+      Genre.find_by_name(input)
     elsif input == "Find by rating"
-      Finder.find_by_rating(input)
+      puts "OK, which rating?"
+      input = gets.strip
+      Genre.find_by_rating(input)
     else
       puts "Say 'Find by name' or 'Find by rating'"
     end
