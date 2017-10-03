@@ -2,6 +2,8 @@
 
 Specs:
 - [x] Have a CLI for interfacing with the application
-- [ ] Pull data from an external source
-- [ ] Implement both list and detail views
-
+  => The CLI constantly depends on the user input. It wants to know what genre the user wants, what movie the user wants to know about, does the user want it to search a word or search a specific rating? Does the user want it to provide a random selection? And the CLI calls on the Scraper and the Genre class to get the lists of movies and find what the user wants.
+- [x] Pull data from an external source
+  => The Scraper takes care of this. For each genre it pulls data from its specific page and for each selected movie (if any) it pulls data from that specific movies page. It makes a list of movies by name and by rating.  
+- [x] Implement both list and detail views
+  => The application is a combination of list and detail views itself. List of genres, list of movies by genre, list of those movies by genre by rating, list of matches of movie titles and ratings. The detail views are more about the movie synonpsis, if they pick a movie, the application access that movie's page and returns the description.
