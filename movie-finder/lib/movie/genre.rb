@@ -19,8 +19,6 @@ class Genre
    #Scraper.rating is already [], so do I have to make new one or does this keep an []?
  end
 
-==== 
-
   def self.find_by_name(name)
     @@list.find_all { |n| n.name == name }
     #users can search by name
