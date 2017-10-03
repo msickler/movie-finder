@@ -2,7 +2,7 @@ class Genre
   attr_accessor :name, :rating, :genre
 
 
-  def print_genre_list
+  def print_genre_list(genre)
    list = Scraper.get_page_by_genre.css("a .unstyled-articleLink")
    list.collect {|title| title.gsub("/m/", "").capitalize}
    list
