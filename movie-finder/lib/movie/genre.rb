@@ -3,6 +3,7 @@ class Genre
 
 
   def print_genre_list(genre)
+   list = []
    list = Scraper.get_page_by_genre.css("a .unstyled-articleLink")
    list.collect {|title| title.gsub("/m/", "").capitalize}
    list

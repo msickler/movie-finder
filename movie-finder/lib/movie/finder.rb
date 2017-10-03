@@ -10,12 +10,6 @@ class Finder
     @@all << self
   end
 
-  def self.all
-    @@all
-    #user can see the full list of a genre
-    #also, it's helpful for us to have
-  end
-
   def self.find_by_name(name)
     list = Genre.print_genre_list
     list.find_all { |n| n.name == name }
@@ -32,7 +26,7 @@ class Finder
   def self.random(genre)
     #users can ask for a random name in a selected genre
       list = []
-      titles = Scraper.get_page_by_genre.css("a .unstyled-articleLink").text
+      titles = Genre.print_genre_list(genre)
       list << titles
       random_movie = list[rand(list.length)]
       random_movie

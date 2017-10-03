@@ -10,7 +10,7 @@ class Cli
   #anyway this is what i have
 
   def initialize(genre = nil)
-    @genre = genre
+    @@genre
   end
 
   def call
@@ -80,7 +80,7 @@ class Cli
       input = gets.strip
     end
   end
-  @genre = input
+  @@genre = input
   # i want to translate this input to a variable genre i can use across the board
   loop do #i want these methods to be able to run in line like this if user doesnt say anything else
     select_movie
@@ -94,7 +94,8 @@ end
     puts "Which movie interests you?"
     puts "Type me the name and I'll you about it"
     puts "But no typos or this won't work"
-    @movie = gets.strip
+    input = gets.strip
+    @movie = input
     Scraper.scrape_movie_index.detect do |title| title.name == @movie
       return @movie.description
     else
