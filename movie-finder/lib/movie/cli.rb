@@ -9,13 +9,12 @@ class Cli
   #i thought it would be fun and useful, since i could make use of something like that myself for my own movie watching nights ...
   #anyway this is what i have
 
-  def initialize(genre = nil)
-    @@genre = genre
-  end
-
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
     start
+    select_movie
+    find
+    randomize
   end
 
   def start
@@ -86,10 +85,7 @@ class Cli
   end
   @@genre = input
   # i want to translate this input to a variable genre i can use across the board
-  loop do #i want these methods to be able to run in line like this if user doesnt say anything else
-    select_movie
-    find
-    randomize
+
   end
 end
 
@@ -147,6 +143,3 @@ end
 
 
   end
-
-
-end
