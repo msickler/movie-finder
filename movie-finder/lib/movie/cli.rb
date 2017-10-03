@@ -34,24 +34,28 @@ class Cli
     puts "Romance, to really set the mood"
     puts "Science Fiction, because Harry Potter"
     input = gets.strip
-    if input == "Action"
-      list_action
-    elsif input == "Comedy"
-      list_comedy
-    elsif input == "Documentary"
-      list_documentary
-    elsif input == "Drama"
-      list_drama
-    elsif input == "Horror"
-      list_horror
-    elsif input == "Family"
-      list_family
-    elsif input == "Mystery"
-      list_mystery
-    elsif input == "Romance"
-      list_romance
-    elsif input == "Science Fiction"
-      list_science_fiction
+     if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Science Fiction"
+         Genre.print_genre_list_of_movies(input)
+         #this might be a better way to print list of movies by genre
+
+    #if input == "Action"
+    #  list_action
+    #elsif input == "Comedy"
+    #  list_comedy
+    #elsif input == "Documentary"
+    #  list_documentary
+    #elsif input == "Drama"
+    #  list_drama
+    #elsif input == "Horror"
+    #  list_horror
+    #elsif input == "Family"
+    #  list_family
+    #elsif input == "Mystery"
+    #  list_mystery
+    #elsif input == "Romance"
+    #  list_romance
+    #elsif input == "Science Fiction"
+    #  list_science_fiction
     else
     puts "Now now, that's not a genre we mentioned."
     input = gets.strip
