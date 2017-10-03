@@ -1,26 +1,18 @@
+require "lib/scraper"
+require "lib/movie/genre"
+# --- ok will mark what i believe is done
+
 class Cli
-
-  #Hello! This is what I have so far in my project...
-  #I'm making an app where you can look for movies, if you have nothing to watch or no ideas
-  #You look them by genre and depending on the genre is the scraping and well, the options
-  #it's mainly about listing movie options from rottentomatoes top 100 by genre
-  #but we can sort them by rating too and they can ask about a movie and receive the description from rottentomatoes website here
-  #we can also provide the user with a random option depending on the genre they choose
-  #i thought it would be fun and useful, since i could make use of something like that myself for my own movie watching nights ...
-  #anyway this is what i have
-  require "lib/scraper"
-  require "lib/movie/genre"
-
+  # --- ok
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
     start
     select_movie
     find
     randomize
-  end
-
+  end #--- ok
+  # --- ok except 1
   def start
-    #we want to lighten the mood. i might need to make an until loop here... not yet though
     puts "What kind of mood are you looking for?"
     puts "We got all the main ones"
     puts "You name it"
@@ -33,24 +25,24 @@ class Cli
     puts "Family, if you must"
     puts "Mystery, my favorite"
     puts "Romance, to really set the mood"
-    puts "Science Fiction, because Harry Potter"
+    puts "Fantasy, because Harry Potter"
     input = gets.strip
     @@genre = input
-     if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Science Fiction"
+     if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
          Genre.print_genre_list_of_movies(input)
-         #this might be a better way to print list of movies by genre
+# ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @@genre
        else
        puts "Now now, that's not a genre we mentioned."
        puts "Enter genre:"
        input = gets.strip
        @@genre = input
-       if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Science Fiction"
+       if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
            Genre.print_genre_list_of_movies(input)
          else
            call
          end
        end
-     end
+     end # --- ok
 
     #if input == "Action"
     #  list_action
@@ -68,7 +60,7 @@ class Cli
     #  list_mystery
     #elsif input == "Romance"
     #  list_romance
-    #elsif input == "Science Fiction"
+    #elsif input == "Fantasy"
     #  list_science_fiction
     #else
     #puts "Now now, that's not a genre we mentioned."
@@ -89,12 +81,12 @@ class Cli
     #  list_mystery
     #elsif input == "Romance"
     #  list_romance
-    #elsif input == "Science Fiction"
+    #elsif input == "Fantasy"
     #  list_science_fiction
     #else
     #  puts "We can wait here all day until you pick a real genre"
     #  puts "... That we carry."
-    #  puts "Here goes the list again: Action, Comedy, Documentary, Drama, Horror, Family, Mystery, Romance and Science Fiction"
+    #  puts "Here goes the list again: Action, Comedy, Documentary, Drama, Horror, Family, Mystery, Romance and Fantasy"
     #  input = gets.strip
     #end
   #end
