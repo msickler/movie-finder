@@ -1,12 +1,11 @@
 class Scraper
-  attr_accessor :genre
+  attr_reader :genre, :movie
 
-  def initialize(genre)
+  def initialize(genre, movie)
     @genre = Cli.genre
+    @movie = Cli.select_movie
     #does this get the genre(=input) from CLI?
   end
-
-
 
   #def genres_list
   #Top 100 Action
@@ -50,6 +49,7 @@ end
     @rating = []
     self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
     @rating << self
+    @rating
   end
 
   def scrape_description(movie)
