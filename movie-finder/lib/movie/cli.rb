@@ -8,6 +8,8 @@ class Cli
   #we can also provide the user with a random option depending on the genre they choose
   #i thought it would be fun and useful, since i could make use of something like that myself for my own movie watching nights ...
   #anyway this is what i have
+  require "lib/scraper"
+  require "lib/movie/genre"
 
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
