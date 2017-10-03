@@ -7,7 +7,7 @@ class Genre
 
 
   def print_genre_list_of_movies
-   @@list << Scraper.get_page_by_genre.css("a .unstyled-articleLink")
+   @@list << Scraper.scrape_movie_index
    @@list.collect {|title| title.gsub("/m/", "").capitalize}
    @@list
  end

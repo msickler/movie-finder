@@ -6,8 +6,9 @@ require "movie/finder/version"
 Gem::Specification.new do |spec|
   spec.name          = "movie-finder"
   spec.version       = Movie::Finder::VERSION
-  spec.authors       = ["'Mariana Sickler'"]
-  spec.email         = ["'marianaleal_93@hotmail.com'"]
+  spec.authors       = ["'M Sickler'"]
+  spec.email         = ["'m'"]
+  spec.files         = ["lib/movie/cli.rb", "lib/movie/genre.rb", "lib/scraper.rb"]
 
   spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
   spec.description   = %q{TODO: Write a longer description or delete this line.}
