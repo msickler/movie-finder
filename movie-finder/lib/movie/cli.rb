@@ -127,7 +127,7 @@ end
     puts "Just say 'OK'"
     input = gets.strip
     if input == "OK"
-      Finder.random(genre)
+      Genre.random(genre)
     else
       puts "Exit or Restart?"
       input = gets.strip
