@@ -98,23 +98,22 @@ class Cli
   #end
   # @@genre = input
   # i want to translate this input to a variable genre i can use across the board
-
   #end
 #end
 
-
   def select_movie
     puts "Which movie interests you?"
-    puts "Type me the name and I'll you about it"
+    puts "Type me the name and I'll tell you about it"
     puts "But no typos or this won't work"
     input = gets.strip
     @movie = input
-    Scraper.scrape_movie_index.detect do |title| title.name == @movie
+    Genre.print_genre_list_of_movies. detect do |title| if title.name == @movie
       Scraper.scrape_description(movie)
+    end
     else
-      puts "Try me again"
+      puts "That's not in our list"
     end
-    end
+    find
   end
 
   def find
@@ -131,18 +130,19 @@ class Cli
       input = gets.strip
       Genre.find_by_rating(input)
     else
-      puts "Say 'Find by name' or 'Find by rating'"
+      puts "That wasn't an option, but here's what else we can do"
     end
+    randomize
   end
 
   def randomize
-    puts "We can select for you, if you like"
+    puts "We can select one movie for you, if you like"
     puts "Just say 'OK'"
     input = gets.strip
     if input == "OK"
-      Genre.random(genre)
+      Genre.random
     else
-      puts "Exit or Restart?"
+      puts "Or we can Exit or Restart?"
       input = gets.strip
       if input == "Exit"
         exit
