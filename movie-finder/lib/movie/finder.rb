@@ -1,10 +1,9 @@
-require "movie/finder/version"
 
 #this is after getting an input in which genre to find from. need to make a cli class
 #update : Finder isnt needed by itself, I'm merging it with Genre
 #class Finder
   #attr_accessor :name, :rating, :genre
-  @@all = []
+  #@@all = []
 
   #def initialize(name = nil, rating = nil)
     #@name = name

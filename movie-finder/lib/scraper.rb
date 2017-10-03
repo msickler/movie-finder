@@ -1,12 +1,11 @@
 class Scraper
-  attr_accessor :genre
+  attr_reader :genre, :movie
 
-  def initialize(genre)
+  def initialize(genre, movie)
     @genre = Cli.genre
+    @movie = Cli.movie
     #does this get the genre(=input) from CLI?
   end
-
-
 
   #def genres_list
   #Top 100 Action
@@ -50,18 +49,17 @@ end
     @rating = []
     self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
     @rating << self
+    @rating
   end
 
   def scrape_description(movie)
-    @movie = Cli.select_movie
-    @link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
-    description_in = Nokogiri::HTML(open(self.link))
+    #@movie = Cli.select_movie
+    @movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
+    description_in = Nokogiri::HTML(open(self.movie_link))
     description = self.description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
-    return description
-    #does @movie take the movie (input) from cli
+    description
     #how to select the specific link value from the movie to then send nokogiri there?
     #list of genres - genre - list of movies - movie - description.
-
   end
 
 
