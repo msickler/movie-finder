@@ -1,5 +1,14 @@
 class Cli
 
+  #Hello! This is what I have so far in my project...
+  #I'm making an app where you can look for movies, if you have nothing to watch or no ideas
+  #You look them by genre and depending on the genre is the scraping and well, the options
+  #it's mainly about listing movie options from rottentomatoes top 100 by genre
+  #but we can sort them by rating too and they can ask about a movie and receive the description from rottentomatoes website here
+  #we can also provide the user with a random option depending on the genre they choose
+  #i thought it would be fun and useful, since i could make use of something like that myself for my own movie watching nights ...
+  #anyway this is what i have
+
   def initialize(genre = nil)
     @genre = genre
   end
@@ -75,17 +84,55 @@ class Cli
   # i want to translate this input to a variable genre i can use across the board
 end
 
+
   def select_movie
     puts "Which movie interests you?"
     puts "Type me the name and I'll you about it"
     puts "But no typos or this won't work"
-    movie = gets.strip
-    Scraper.scrape_movie_index.detect do |title| title.name == movie
-      return movie.description
+    @movie = gets.strip
+    Scraper.scrape_movie_index.detect do |title| title.name == @movie
+      return @movie.description
     else
       puts "Try me again"
     end
+    end
+    self.select_movie
   end
+
+  def find
+    puts "You can search here too"
+    puts "Here's what you can do:"
+    puts "Say 'Find by name' or 'Find by rating'"
+    input = gets.strip
+    if input == "Find by name"
+      Finder.find_by_name(input)
+    elsif input == "Find by rating"
+      Finder.find_by_rating(input)
+    else
+      puts "Say 'Find by name' or 'Find by rating'"
+    end
+  end
+
+  def randomize
+    puts "We can select for you, if you like"
+    puts "Just say 'OK'"
+    input = gets.strip
+    if input == "OK"
+      Finder.random(genre)
+    else
+      puts "Exit or Restart?"
+      input = gets.strip
+      if input == "Exit"
+        exit
+      else input == "Restart"
+        start
+      end
+    end
+  end
+
+
+
+
   end
 
 

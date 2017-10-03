@@ -61,6 +61,7 @@ end
     #does @movie take the movie (input) from cli
     #how to select the specific link value from the movie to then send nokogiri there?
     #list of genres - genre - list of movies - movie - description.
+
   end
 
 
