@@ -1,4 +1,8 @@
-class MovieFinder::CLI
+class Cli
+
+  def initialize(genre = nil)
+    @genre = genre
+  end
 
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
@@ -67,8 +71,22 @@ class MovieFinder::CLI
       input = gets.strip
     end
   end
+  @genre = input
+  # i want to translate this input to a variable genre i can use across the board
 end
 
+  def select_movie
+    puts "Which movie interests you?"
+    puts "Type me the name and I'll you about it"
+    puts "But no typos or this won't work"
+    movie = gets.strip
+    Scraper.scrape_movie_index.detect do |title| title.name == movie
+      return movie.description
+    else
+      puts "Try me again"
+    end
+  end
+  end
 
 
 end

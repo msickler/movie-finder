@@ -1,4 +1,12 @@
-class MovieFinder::Scraper
+class Scraper
+  attr_accessor :genre
+
+  def initialize(genre)
+    @genre = Cli.genre
+    #does this get the genre(=input) from CLI?
+  end
+
+
 
   #def genres_list
   #Top 100 Action
@@ -42,8 +50,12 @@ end
     rating = self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
   end
 
-  def scrape_description
-    description = self.get_page_by_genre
+  def scrape_description(movie)
+    @movie = Cli.select_movie
+    @link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
+    description_in = Nokogiri::HTML(open(self.link))
+    description = self.description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+    return description
     #how do we get a description of a selected movie that is in a separate page. How do we link all this?
     #list of genres - genre - list of movies - movie - description. o m g we haven't done this
   end
