@@ -35,6 +35,7 @@ class MovieFinder::Cli
     @genre = input
      if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
         @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
+        @@list
 # ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @genre
        else
        puts "Now now, that's not a genre we mentioned."
@@ -44,6 +45,7 @@ class MovieFinder::Cli
        @genre = input
         if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
            @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
+           @@list
         else
            call
         end

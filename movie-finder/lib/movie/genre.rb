@@ -1,8 +1,13 @@
 
 class MovieFinder::Genre
   attr_accessor :name, :rating #---the 2 variables we need from outside the class, from the CLI
-  @@list = []
-  @@rating_list = []
+
+  def initialize(name = nil, rating = nil)
+    @name = name
+    @rating = rating
+    @@list = []
+    @@rating_list = []
+  end
 
 
   def print_genre_list_of_movies
@@ -17,7 +22,7 @@ class MovieFinder::Genre
  end
 
   def self.find_by_name(name)
-    @@list.find_all { |n| n.name == name }
+    @@list.find_all { |n| n.name.downcase == name.downcase }
   end
 
   def self.find_by_rating(rating)
