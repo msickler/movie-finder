@@ -3,6 +3,10 @@ require "lib/movie/genre"
 # --- ok will mark what i believe is done
 
 class Cli
+
+  def initialize(genre = nil)
+    @genre = genre
+  end
   # --- ok
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
@@ -43,57 +47,6 @@ class Cli
          end
        end
      end # --- ok
-
-    #if input == "Action"
-    #  list_action
-    #elsif input == "Comedy"
-    #  list_comedy
-    #elsif input == "Documentary"
-    #  list_documentary
-    #elsif input == "Drama"
-    #  list_drama
-    #elsif input == "Horror"
-    #  list_horror
-    #elsif input == "Family"
-    #  list_family
-    #elsif input == "Mystery"
-    #  list_mystery
-    #elsif input == "Romance"
-    #  list_romance
-    #elsif input == "Fantasy"
-    #  list_science_fiction
-    #else
-    #puts "Now now, that's not a genre we mentioned."
-    #input = gets.strip
-    #if input == "Action"
-    #  list_action
-    #elsif input == "Comedy"
-    #  list_comedy
-    #elsif input == "Documentary"
-    #  list_documentary
-    #elsif input == "Drama"
-    #  list_drama
-    #elsif input == "Horror"
-    #  list_horror
-    #elsif input == "Family"
-    #  list_family
-    #elsif input == "Mystery"
-    #  list_mystery
-    #elsif input == "Romance"
-    #  list_romance
-    #elsif input == "Fantasy"
-    #  list_science_fiction
-    #else
-    #  puts "We can wait here all day until you pick a real genre"
-    #  puts "... That we carry."
-    #  puts "Here goes the list again: Action, Comedy, Documentary, Drama, Horror, Family, Mystery, Romance and Fantasy"
-    #  input = gets.strip
-    #end
-  #end
-  # @@genre = input
-  # i want to translate this input to a variable genre i can use across the board
-  #end
-#end
 
   def select_movie
     puts "Which movie interests you?"
