@@ -1,5 +1,4 @@
-require "lib/scraper"
-require "lib/movie/genre"
+
 # --- ok will mark what i believe is done
 
 class Cli
@@ -33,20 +32,20 @@ class Cli
     puts "Fantasy, because Harry Potter"
     input = gets.strip
     @genre = input
-     if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
+     if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
         @@list = Genre.print_genre_list_of_movies(input)
 # ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @genre
        else
        puts "Now now, that's not a genre we mentioned."
        puts "Enter genre:"
        input = gets.strip
+     end
        @genre = input
-       if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
+        if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
            @@list = Genre.print_genre_list_of_movies(input)
-         else
+        else
            call
-         end
-       end
+        end
      end # --- ok
 
   # --- ok unless call to Scraper.scrape_description(input) doesn't work
@@ -58,14 +57,14 @@ class Cli
     @movie = input
     @@list.detect do |title| if title.name == input
       Scraper.scrape_description(input)
-    end
-    else
+      else
       puts "That's not in our list"
     end
+  end
     find
   end # --- ok
 
-  # --- ok
+  # --- ok unless Genre.find_by_name == broken
   def find
     puts "You can search here too"
     puts "Here's what you can do:"
@@ -84,7 +83,7 @@ class Cli
     end
   end # --- ok
 
-  # --- ok
+  # --- ok unless Genre.random is broken
   def randomize
     puts "We can select one movie for you, if you like"
     puts "Just say 'OK'"
