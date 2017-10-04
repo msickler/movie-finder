@@ -41,9 +41,12 @@ class MovieFinder::Scraper
   end # --- ok
 
   # --- how to get a link path and send nokogiri to it abstractly
+  # --- how to select the movie and access that movie link
   def scrape_description(movie)
-    @movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
-    description_in = Nokogiri::HTML(open(movie_link))
+    movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
+    url = self.get_page_by_genre.css.search("a.unstyled-articleLink").first.attr("href").strip
+
+    description_in = Nokogiri::HTML(open(url))
     description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     description
   end
