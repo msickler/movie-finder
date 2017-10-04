@@ -1,4 +1,3 @@
-require "movie/finder/version"
 
 class Genre
   attr_accessor :name, :rating
