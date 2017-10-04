@@ -44,8 +44,8 @@ class Scraper
   # --- how to get a link path and send nokogiri to it abstractly
   def scrape_description(movie)
     @movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
-    description_in = Nokogiri::HTML(open(self.movie_link))
-    description = self.description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+    description_in = Nokogiri::HTML(open(movie_link))
+    description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     description
   end
 
