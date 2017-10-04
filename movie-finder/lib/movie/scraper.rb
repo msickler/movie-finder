@@ -1,11 +1,10 @@
-require 'nokogiri'
 
-class Scraper
+class MovieFinder::Scraper
   attr_accessor :genre, :movie
 
   def initialize(genre= nil, movie= nil)
-    @genre = Cli.genre # or Cli.start.genre (where the genre var is born)
-    @movie = Cli.movie #or Cli.select_movie.movie (where the movie var is born)
+    @genre = MovieFinder::Cli.genre # or Cli.start.genre (where the genre var is born)
+    @movie = MovieFinder::Cli.movie #or Cli.select_movie.movie (where the movie var is born)
   end
 
   # --- ok if ini variables work

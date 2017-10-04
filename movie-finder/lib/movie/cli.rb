@@ -1,7 +1,7 @@
 
 # --- ok will mark what i believe is done
 
-class Cli
+class MovieFinder::Cli
 
   def initialize(genre = nil, movie = nil)
     @genre = genre
@@ -34,7 +34,7 @@ class Cli
     input = gets.strip
     @genre = input
      if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
-        @@list = Genre.print_genre_list_of_movies(input)
+        @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
 # ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @genre
        else
        puts "Now now, that's not a genre we mentioned."
@@ -43,7 +43,7 @@ class Cli
      end
        @genre = input
         if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
-           @@list = Genre.print_genre_list_of_movies(input)
+           @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
         else
            call
         end
@@ -57,7 +57,7 @@ class Cli
     input = gets.strip
     @movie = input
     @@list.detect do |title| if title.name == input
-      Scraper.scrape_description(input)
+      MovieFinder::Scraper.scrape_description(input)
       else
       puts "That's not in our list"
     end
@@ -74,11 +74,11 @@ class Cli
     if input == "Find by name"
       puts "Great, what name?"
       input = gets.strip
-      Genre.find_by_name(input)
+      MovieFinder::Genre.find_by_name(input)
     elsif input == "Find by rating"
       puts "OK, which rating?"
       input = gets.strip
-      Genre.find_by_rating(input)
+      MovieFinder::Genre.find_by_rating(input)
     else
       randomize
     end
@@ -90,7 +90,7 @@ class Cli
     puts "Just say 'OK'"
     input = gets.strip
     if input == "OK"
-      Genre.random
+      MovieFinder::Genre.random
     else
       puts "Or we can Exit or Restart?"
       input = gets.strip

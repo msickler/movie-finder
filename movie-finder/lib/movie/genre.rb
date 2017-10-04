@@ -1,18 +1,18 @@
 
-class Genre
+class MovieFinder::Genre
   attr_accessor :name, :rating #---the 2 variables we need from outside the class, from the CLI
   @@list = []
   @@rating_list = []
 
 
   def print_genre_list_of_movies
-   @@list << Scraper.scrape_movie_index
+   @@list << MovieFinder::Scraper.scrape_movie_index
    @@list.collect {|title| title.gsub("/m/", "").capitalize}
    @@list
  end
 
  def print_list_by_rating
-   @@rating_list << Scraper.scrape_rating
+   @@rating_list << MovieFinder::Scraper.scrape_rating
    @@rating_list.sort.reverse
  end
 
