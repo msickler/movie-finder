@@ -56,7 +56,7 @@ class MovieFinder::Cli
     puts "Which movie interests you?"
     puts "Type me the name and I'll tell you about it"
     puts "But no typos or this won't work"
-    input = gets.strip
+    input = gets.strip.downcase
     @movie = input
     @@list.detect do |title| if title.name == input
       MovieFinder::Scraper.scrape_description(input)
@@ -75,11 +75,11 @@ class MovieFinder::Cli
     input = gets.strip
     if input == "Find by name"
       puts "Great, what name?"
-      input = gets.strip
+      input = gets.strip.downcase
       MovieFinder::Genre.find_by_name(input)
     elsif input == "Find by rating"
       puts "OK, which rating?"
-      input = gets.strip
+      input = gets.strip.gsub("%", "")
       MovieFinder::Genre.find_by_rating(input)
     else
       randomize
@@ -103,8 +103,5 @@ class MovieFinder::Cli
       end
     end
   end # --- ok
-
-
-
 
   end
