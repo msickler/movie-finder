@@ -6,6 +6,7 @@ class Cli
 
   def initialize(genre = nil)
     @genre = genre
+    @@list = []
   end
   # --- ok
   def call
@@ -31,38 +32,40 @@ class Cli
     puts "Romance, to really set the mood"
     puts "Fantasy, because Harry Potter"
     input = gets.strip
-    @@genre = input
+    @genre = input
      if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
-         Genre.print_genre_list_of_movies(input)
-# ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @@genre
+        @@list = Genre.print_genre_list_of_movies(input)
+# ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @genre
        else
        puts "Now now, that's not a genre we mentioned."
        puts "Enter genre:"
        input = gets.strip
-       @@genre = input
+       @genre = input
        if input == "Action" || "Comedy" || "Documentary" || "Drama" || "Horror" || "Family" || "Mystery" || "Romance" || "Fantasy"
-           Genre.print_genre_list_of_movies(input)
+           @@list = Genre.print_genre_list_of_movies(input)
          else
            call
          end
        end
      end # --- ok
 
+  # --- ok unless call to Scraper.scrape_description(input) doesn't work
   def select_movie
     puts "Which movie interests you?"
     puts "Type me the name and I'll tell you about it"
     puts "But no typos or this won't work"
     input = gets.strip
     @movie = input
-    Genre.print_genre_list_of_movies. detect do |title| if title.name == @movie
-      Scraper.scrape_description(movie)
+    @@list.detect do |title| if title.name == input
+      Scraper.scrape_description(input)
     end
     else
       puts "That's not in our list"
     end
     find
-  end
+  end # --- ok
 
+  # --- ok
   def find
     puts "You can search here too"
     puts "Here's what you can do:"
@@ -77,11 +80,11 @@ class Cli
       input = gets.strip
       Genre.find_by_rating(input)
     else
-      puts "That wasn't an option, but here's what else we can do"
+      randomize
     end
-    randomize
-  end
+  end # --- ok
 
+  # --- ok
   def randomize
     puts "We can select one movie for you, if you like"
     puts "Just say 'OK'"
@@ -97,7 +100,7 @@ class Cli
         start
       end
     end
-  end
+  end # --- ok
 
 
 
