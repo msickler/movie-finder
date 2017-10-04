@@ -3,8 +3,9 @@
 
 class Cli
 
-  def initialize(genre = nil)
+  def initialize(genre = nil, movie = nil)
     @genre = genre
+    @movie = movie
     @@list = []
   end
   # --- ok
@@ -64,7 +65,7 @@ class Cli
     find
   end # --- ok
 
-  # --- ok unless Genre.find_by_name == broken
+  # --- ok unless Genre.find_by_name cant work with the input as variable
   def find
     puts "You can search here too"
     puts "Here's what you can do:"
@@ -83,7 +84,7 @@ class Cli
     end
   end # --- ok
 
-  # --- ok unless Genre.random is broken
+  # --- ok
   def randomize
     puts "We can select one movie for you, if you like"
     puts "Just say 'OK'"

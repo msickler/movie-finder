@@ -1,6 +1,6 @@
 
 class Genre
-  attr_accessor :name, :rating
+  attr_accessor :name, :rating #---the 2 variables we need from outside the class, from the CLI
   @@list = []
   @@rating_list = []
 
