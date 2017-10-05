@@ -45,12 +45,15 @@ class MovieFinder::Scraper
     # REFERENCE :exhibit_link => "http://moma.org#{exhibit.css("a.calendar-tile__link").attribute("href").value}"
     # ALTERNATIVE movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
     # ALTERNATIVE url = self.get_page_by_genre.css.search("a.unstyled-articleLink").first.attr("href").strip
-    self.scrape_movie_index.find { |title| title.name.downcase == movie.downcase  }
-    movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
-    description_in = Nokogiri::HTML(open(movie_link))
-    description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
-    description
+    get_movie = self.scrape_movie_index.find { |title| title.name.downcase == movie.downcase  }
+    if get_movie != nil 
+      movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
+      description_in = Nokogiri::HTML(open(movie_link))
+      description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+      description
+   else
+     nil
+   end 
   end
-
 
 end
