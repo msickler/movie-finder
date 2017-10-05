@@ -10,13 +10,13 @@ class MovieFinder::Genre
   end
 
 
-  def print_genre_list_of_movies
+  def self.print_genre_list_of_movies
    @@list << MovieFinder::Scraper.scrape_movie_index
    @@list.collect {|title| title.gsub("/m/", "").capitalize}
    @@list
  end
 
- def print_list_by_rating
+ def self.print_list_by_rating
    @@rating_list << MovieFinder::Scraper.scrape_rating
    @@rating_list.sort.reverse
  end

@@ -3,18 +3,16 @@
 
 class MovieFinder::Cli
 
-  def initialize(genre = nil, movie = nil)
-    @genre = genre
-    @movie = movie
+  # I don't think I need to initialize here
+  #def initialize(genre = nil, movie = nil)
+    #@genre = genre
+    #@movie = movie
     @@list = []
-  end
+  #end
   # --- ok
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
     start
-    select_movie
-    find
-    randomize
   end #--- ok
   # --- ok except 1
   def start
@@ -34,8 +32,9 @@ class MovieFinder::Cli
     input = gets.strip
     @genre = input
      if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
-        @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
+        @@list = MovieFinder::Genre.print_genre_list_of_movies(@genre)
         @@list
+        select_movie
 # ------->  how to make it so Genre.print_genre_list_of_movies takes CLI @genre
        else
        puts "Now now, that's not a genre we mentioned."
@@ -44,8 +43,9 @@ class MovieFinder::Cli
        @genre = input
     end
         if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
-           @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
+           @@list = MovieFinder::Genre.print_genre_list_of_movies(@genre)
            @@list
+           select_movie
         else
            call
         end
@@ -58,8 +58,8 @@ class MovieFinder::Cli
     puts "But no typos or this won't work"
     input = gets.strip.downcase
     @movie = input
-    @@list.detect do |title| if title.name == input
-      MovieFinder::Scraper.scrape_description(input)
+    @@list.detect do |title| if title.name == @movie
+      MovieFinder::Scraper.scrape_description(@movie)
       else
       puts "That's not in our list"
       end

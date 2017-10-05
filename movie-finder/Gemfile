@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-git_source(:github) {|movie-finder| "https://github.com/#{movie-finder}" }
+git_source(:github) {|movie_finder| "https://github.com/#{movie-finder}" }
 
 # Specify your gem's dependencies in movie-finder.gemspec
 
