@@ -41,15 +41,15 @@ class MovieFinder::Cli
        puts "Now now, that's not a genre we mentioned."
        puts "Enter genre:"
        input = gets.strip
-     end
        @genre = input
+    end
         if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
            @@list = MovieFinder::Genre.print_genre_list_of_movies(input)
            @@list
         else
            call
         end
-     end # --- ok
+  end # --- ok
 
   # --- ok unless call to Scraper.scrape_description(input) doesn't work
   def select_movie
@@ -62,8 +62,8 @@ class MovieFinder::Cli
       MovieFinder::Scraper.scrape_description(input)
       else
       puts "That's not in our list"
+      end
     end
-  end
     find
   end # --- ok
 
@@ -104,4 +104,4 @@ class MovieFinder::Cli
     end
   end # --- ok
 
-  end
+end
