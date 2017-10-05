@@ -1,6 +1,6 @@
 
 # --- ok will mark what i believe is done
-
+require 'pry'
 class MovieFinder::Cli
 
   # I don't think I need to initialize here
@@ -12,6 +12,7 @@ class MovieFinder::Cli
   # --- ok
   def call
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
+    binding.pry
     start
   end #--- ok
   # --- ok except 1
