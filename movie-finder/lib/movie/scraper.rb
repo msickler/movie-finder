@@ -43,12 +43,11 @@ class MovieFinder::Scraper
   # --- how to select the movie and access that movie link
   def scrape_description(movie)
     # REFERENCE :exhibit_link => "http://moma.org#{exhibit.css("a.calendar-tile__link").attribute("href").value}"
-    movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.css("a.unstyled-articleLink").attribute("href").value}"
     # ALTERNATIVE movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
     # ALTERNATIVE url = self.get_page_by_genre.css.search("a.unstyled-articleLink").first.attr("href").strip
-    if self.scrape_movie_index.find { |movie| movie.name == movie  }
+    self.scrape_movie_index.find { |title| title.name.downcase == movie.downcase  }
+    movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
     description_in = Nokogiri::HTML(open(movie_link))
-    #description_in = Nokogiri::HTML(open(url))
     description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     description
   end
