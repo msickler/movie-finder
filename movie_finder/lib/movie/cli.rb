@@ -1,7 +1,6 @@
 
 # --- ok will mark what i believe is done
 class MovieFinder::Cli
-
   # I don't think I need to initialize here
   #def initialize(genre = nil, movie = nil)
     #@genre = genre
@@ -69,17 +68,12 @@ class MovieFinder::Cli
   # --- ok unless Genre.find_by_name cant work with the input as variable
   def find
     puts "You can search here too"
-    puts "Here's what you can do:"
-    puts "Say 'Find by name' or 'Find by rating'"
+    puts "Say 'Find by name'"
     input = gets.strip
     if input == "Find by name"
       puts "Great, what name?"
       input = gets.strip.downcase
       MovieFinder::Genre.find_by_name(input)
-    elsif input == "Find by rating"
-      puts "OK, which rating?"
-      input = gets.strip.gsub("%", "")
-      MovieFinder::Genre.find_by_rating(input)
     else
       randomize
     end

@@ -16,17 +16,8 @@ class MovieFinder::Genre
    @@list
  end
 
- def self.print_list_by_rating
-   @@rating_list << MovieFinder::Scraper.scrape_rating
-   @@rating_list.sort.reverse
- end
-
   def self.find_by_name(name)
     @@list.find_all { |n| n.name.downcase == name.downcase }
-  end
-
-  def self.find_by_rating(rating)
-    @@rating_list.find_all { |n| n.rating == rating  }
   end
 
   def self.random
