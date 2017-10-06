@@ -7,8 +7,8 @@ class MovieFinder::Genre
     @@list = []
   end
 
-  def self.print_genre_list_of_movies
-   @@list << MovieFinder::Scraper.scrape_movie_index
+  def self.print_genre_list_of_movies(genre)
+   @@list << MovieFinder::Scraper.scrape_movie_index(genre)
    @@list.collect {|title| title.gsub("/m/", "").capitalize}
    @@list
  end

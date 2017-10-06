@@ -1,14 +1,10 @@
 
 # --- ok will mark what i believe is done
 class MovieFinder::Cli
-  # I don't think I need to initialize here
-  #def initialize(genre = nil, movie = nil)
-    #@genre = genre
-    #@movie = movie
     @@list = []
-  #end
   # --- ok
   def call
+
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
     start
   end #--- ok
@@ -56,7 +52,9 @@ class MovieFinder::Cli
     puts "But no typos or this won't work"
     input = gets.strip.downcase
     @movie = input
-    @@list.detect do |title| if title.name == @movie
+    # TODO iterate over an array of Movies
+    @@list.detect do |title| if title.name.downcase == @movie
+      # TODO pass in
       MovieFinder::Scraper.scrape_description(@movie)
       else
       puts "That's not in our list"

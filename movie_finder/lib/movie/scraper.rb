@@ -31,8 +31,11 @@ class MovieFinder::Scraper
   end # --- ok
 
   # --- ok
-  def scrape_movie_index
-    self.get_page_by_genre.css("a .unstyled-articleLink").text
+  def scrape_movie_index(genre)
+    # TODO instantiate movie with title and link by iterating on your scraped data and instantiating and saving a movie with the title and link
+    self.get_page_by_genre(genre).css("a .unstyled-articleLink").text
+
+    # TODO return array of movie objects
   end # --- ok
 
   # --- how to select the movie and access that movie link
@@ -40,7 +43,9 @@ class MovieFinder::Scraper
     # REFERENCE :exhibit_link => "http://moma.org#{exhibit.css("a.calendar-tile__link").attribute("href").value}"
     # ALTERNATIVE movie_link = self.get_page_by_genre.css("a .unstyled-articleLink").attribute("href").value
     # ALTERNATIVE url = self.get_page_by_genre.css.search("a.unstyled-articleLink").first.attr("href").strip
-    get_movie = self.scrape_movie_index.find { |title| title.name.downcase == movie.downcase  }
+    #get_movie = self.scrape_movie_index.find { |title| title.name.downcase == movie.downcase  }
+
+    # TODO remove if statement and pass in link correctly for your scraping
     if get_movie != nil
       movie_link = "http://rottentomatoes.com#{get_movie.attribute("href").value}"
       #movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
