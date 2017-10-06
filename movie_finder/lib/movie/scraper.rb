@@ -35,11 +35,6 @@ class MovieFinder::Scraper
     self.get_page_by_genre.css("a .unstyled-articleLink").text
   end # --- ok
 
-  # --- ok
-  def scrape_rating
-    self.get_page_by_genre.css(".tMeterScore").gsub("%", "").text
-  end # --- ok
-
   # --- how to select the movie and access that movie link
   def scrape_description(movie)
     # REFERENCE :exhibit_link => "http://moma.org#{exhibit.css("a.calendar-tile__link").attribute("href").value}"
@@ -56,5 +51,6 @@ class MovieFinder::Scraper
      nil
    end
   end
+
 
 end
