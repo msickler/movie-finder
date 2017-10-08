@@ -1,11 +1,11 @@
 module MovieFinder
   class Scraper
-    attr_accessor :genre, :title
+    attr_accessor :genre, :movie
     BASE_URL = 'https://www.rottentomatoes.com/'
 
-      def initialize(genre= nil, title= nil)
+      def initialize(genre= nil, movie= nil)
         @gnere = genre
-        @title = title
+        @movie = movie
       end
 
       def get_page_by_genre(genre)
@@ -29,3 +29,21 @@ module MovieFinder
           Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_science_fiction__fantasy_movies/"))
         end
       end
+
+      def get_movie_with_attributes
+          self.get_page_by_genre.css(".table tr").drop(1).each do |row|
+            movie = MovieFinder::Movie.new
+            movie.rating = row.css(".tMeterScore").text.gsub!(/\u00A0/, "")
+            movie.title = row.css("a.unstyled-articleLink").text
+            movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
+          end
+          MovieFinder::Movie.all
+        end
+
+    def get_synopsis(movie)
+        link = BASE_URL + movie.link
+        synopsis_in = Nokogiri::HTML(open(link))
+        movie.synopsis = synopsis_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+    end
+end
+end

@@ -48,7 +48,7 @@ class MovieFinder::Scraper
     # TODO remove if statement and pass in link correctly for your scraping
     if get_movie != nil
       movie_link = "http://rottentomatoes.com#{get_movie.attribute("href").value}"
-      #movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
+      movie_link = "http://rottentomatoes.com#{self.get_page_by_genre.search("a.unstyled-articleLink").attribute("href").value}"
       description_in = Nokogiri::HTML(open(movie_link))
       description = description_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
       description

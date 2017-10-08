@@ -4,7 +4,6 @@ class MovieFinder::Cli
     @@list = []
   # --- ok
   def call
-
     puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
     start
   end #--- ok

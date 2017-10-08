@@ -15,13 +15,17 @@ module MovieFinder
     end
 
     def self.list_all
-      self.all.each do |movie|
+      @@all.each do |movie|
         puts "#{movie.title} - #{movie.rating}"
       end
     end
 
-     def self.synopsis
-
+     def self.synopsis(movie)
+       @@all.detect do |title| if title.name.downcase == movie.downcase
+         MovieFinder::Scraper.get_synopsis(movie)
+       else
+         nil
+       end
      end
 
      def self.random
