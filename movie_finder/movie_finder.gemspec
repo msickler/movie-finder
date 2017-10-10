@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/msickler/movie-finder"
 
   spec.files         = `git ls-files`.split($\)
-  spec.executables   = ["now-playing"]
+  spec.executables   = ["movie-finder"]
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.name          = "movie_finder"
   spec.require_paths = ["lib", "lib/movie"]
