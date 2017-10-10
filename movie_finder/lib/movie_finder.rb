@@ -2,7 +2,10 @@ require 'open-uri'
 require 'pry'
 require 'nokogiri'
 
-require_relative "movie/version.rb"
-require_relative "movie/cli.rb"
-require_relative "movie/movie.rb"
-require_relative "movie/scraper.rb"
+require_relative "movie/version"
+require_relative "movie/cli"
+require_relative "movie/movie"
+require_relative "movie/scraper"
+
+module MovieFinder
+end
