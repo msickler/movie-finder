@@ -1,69 +1,20 @@
 require 'spec_helper'
 
 RSpec.describe MovieFinder::Movie do
-  context 'Class Methods' do
-
-    #around(:each) do |example|
-    #  VCR.use_cassette("movie-finder") do
-    #    example.run
-    #  end
-    #end
-    let(:movies){MovieFinder::Movie.all}
-
-    describe '.all' do
-      it 'returns an array of movies' do
-        expect(movies).to be_an(Array)
-        expect(movies.first).to be_a(MovieFinder::Movie)
-      end
-
-      it 'correctly scrapes names and urls for the movies' do
-        expect(movies.first.name).to eq("The 33 (2015)")
-        expect(movies.first.url).to eq("http://imdb.com/title/tt2006295/")
-      end
-    end
-
-    describe '.find' do
-      it 'returns the movie based on position in @@all' do
-        expect(NowPlaying::Movie.find(1)).to eq(movies[0])
-      end
-    end
-
-    describe '.find_by_name' do
-      it 'returns the movie based on the name' do
-        expect(NowPlaying::Movie.find_by_name("The 33")).to eq(movies[0])
-      end
-    end
+  before :each do
+    @movie = Movie.new :title, :rating
   end
+   describe "#new" do
+     it "returns a new movie object" do
+       @movie.should be_an_instance_of Movie
+     end
+   end
 
-  context 'Instance Methods' do
-    subject{NowPlaying::Movie.new("The 33 (2015)", "http://imdb.com/title/tt2006295/")}
-
-    describe '#name' do
-      it 'has a name' do
-        expect(subject.name).to eq("The 33 (2015)")
-      end
-    end
-
-    describe '#url' do
-      it 'has a url' do
-        expect(subject.url).to eq("http://imdb.com/title/tt2006295/")
-      end
-    end
-
-    describe '#stars' do
-      it 'has stars based on scraping the main URL' do
-        VCR.use_cassette("movie") do
-          expect(subject.stars).to eq("Antonio Banderas, Rodrigo Santoro, Juliette Binoche")
-        end
-      end
-    end
-
-    describe '#summary' do
-      it 'has a summary based on scraping the plotsummary URL' do
-        VCR.use_cassette("plotsummary") do
-          expect(subject.summary).to eq("Based on the real-life event, when a gold and copper mine collapses, it traps 33 miners underground for 69 days.")
-        end
-      end
-    end
+  describe "#title" do
+    it "returns the correct title" do
+      @movie.title.should eql "Title"
   end
 end
+
+
+   end
