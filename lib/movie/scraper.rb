@@ -36,8 +36,9 @@ module MovieFinder
       end
     end
 
-    def new_with_attributes
-      self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
+    def new_with_attributes(doc)
+      #self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
+        new = doc.search(".table tr").drop(1).each do |row|
         movie = MovieFinder::Movie.new
         movie.rating = row.css(".tMeterScore").text.gsub("%", "")
         movie.title = row.css("a.unstyled-articleLink").text
