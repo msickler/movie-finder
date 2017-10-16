@@ -38,7 +38,7 @@ class Cli
          @genre = input
       end
       if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
-          Scraper.get_page_by_genre(@genre)
+          @doc = Scraper.get_page_by_genre(@genre)
           make_movies
         else
           call
@@ -65,10 +65,11 @@ class Cli
       puts "But no typos or this won't work"
       input = gets.strip.downcase
       @title = input
-      if Movie.find_synopsis(@title) != nil
-        Movie.find_synopsis(@title)
-      else
-        puts "That's not in our list"
+      synopsis = Movie.find_synopsis(@title)
+        if synopsis != nil
+          puts "Synopsis: #{movie.synopsis}"
+        else
+          puts "That's not in our list"
       end
      find
     end

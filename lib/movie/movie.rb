@@ -2,11 +2,12 @@ class Movie
     attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
 
-    def initialize(movie_hash, synopsis= nil)
+    def initialize(movie_hash)
       movie_hash.each {|key, value| self.send("#{key}=", value)}
       self
       @@all << self
       @synopsis = synopsis
+
     end
 
     def self.create_from_collection(movies_array)

@@ -1,11 +1,12 @@
 class Scraper
-    attr_accessor :genre, :movie, :doc
+    attr_accessor :genre, :movie, :doc, :link
     BASE_URL = 'https://www.rottentomatoes.com/'
 
     def initialize(genre= nil, movie= nil)
       @genre = genre
       @movie = movie
       @doc = doc
+      @link = link
     end
 
     def self.get_page_by_genre(genre)
@@ -55,8 +56,8 @@ class Scraper
       #link = 'https://www.rottentomatoes.com/' + movie[:link]
       link = BASE_URL + movie[:link]
       page = Nokogiri::HTML(open(link))
-      movie.synopsis = page.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
-      movie.synopsis
+      movie.synopsis = page.css(".movie_synopsis").text.strip!
+      movie
     end
 
 
