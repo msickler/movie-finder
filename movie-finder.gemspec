@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files`.split($\)
   spec.executables   = ["movie-finder"]
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.name          = "movie_finder"
+  spec.name          = "movie-finder"
   spec.require_paths = ["lib", "lib/movie"]
   spec.version       = MovieFinder::VERSION
   spec.license       = "MIT"
