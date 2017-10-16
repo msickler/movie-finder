@@ -1,3 +1,5 @@
+require 'pry'
+
 class Scraper
     attr_accessor :genre, :movie, :doc, :link
     BASE_URL = 'https://www.rottentomatoes.com/'
@@ -36,11 +38,12 @@ class Scraper
       #self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
         movies = []
         movies_hash = {}
-        movie = @doc.css(".table tr").each do |row|
+        movie = @doc.css(".table tr").drop(1).each do |row|
+
           movies_hash = {
             :title => row.css(".unstyled").text,
-            :rating => row.css(".tMeterScore").text.gsub("%", "")
-            #:link => row.css("a").attribute("href").value
+            :rating => row.css(".tMeterScore").text.gsub("%", ""),
+            :link => row.css(".unstyled").attribute('href').value
           }
           movies << movies_hash
         #movie.rating = row.css(".tMeterScore").text.gsub("%", "")

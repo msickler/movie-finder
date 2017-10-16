@@ -18,7 +18,7 @@ class Movie
     end
 
     def self.find_movie(title)
-      selected = @@all.detect { |movie| movie[:title].downcase == title.downcase }
+      selected = @@all.detect { |movie| movie.title.downcase == title.downcase }
       selected
     end
 
