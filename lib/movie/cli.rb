@@ -3,7 +3,6 @@ require_relative '../movie/movie.rb'
 require 'nokogiri'
 
 class Cli
-    attr_accessor :scraper, :movie, :doc
 
     def call
       puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
@@ -28,6 +27,7 @@ class Cli
       input = gets.strip.downcase
       @genre = input
        if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
+        @doc = Scraper.get_page_by_genre(@genre)
         make_movies
        else
          puts "Now now, that's not a genre we mentioned."
@@ -36,14 +36,15 @@ class Cli
          @genre = input
       end
       if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
+          Scraper.get_page_by_genre(@genre)
           make_movies
-          else
-             call
-          end
+        else
+          call
+        end
     end
 
     def make_movies
-      movies_array = Scraper.new_with_attributes(doc)
+      movies_array = Scraper.new_movie_list(@doc)
       Movie.create_from_collection(movies_array)
     end
 

@@ -13,8 +13,6 @@ class Movie
       movies_array.each {|movie| Movie.new(movie)}
     end
 
-
-
     def self.all
       @@all
     end
@@ -27,7 +25,7 @@ class Movie
 
     def self.find_synopsis(title)
       @@all.detect do |t| if t.title.downcase == title.downcase
-        MovieFinder::Scraper.get_synopsis(title)
+        Scraper.get_synopsis(title)
         else
          nil
        end

@@ -1,6 +1,6 @@
 class Scraper
     attr_accessor :genre, :movie, :doc
-    #BASE_URL = 'https://www.rottentomatoes.com/'
+    BASE_URL = 'https://www.rottentomatoes.com/'
 
     def initialize(genre= nil, movie= nil)
       @genre = genre
@@ -8,7 +8,7 @@ class Scraper
       @doc = doc
     end
 
-    def get_page_by_genre(genre)
+    def self.get_page_by_genre(genre)
       if @genre == "action"
         @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
       elsif genre == "comedy"
@@ -31,7 +31,7 @@ class Scraper
       @doc
     end
 
-    def self.new_with_attributes(doc)
+    def self.new_movie_list(doc)
       #self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
         movies = []
         movies_hash = {}
@@ -49,19 +49,13 @@ class Scraper
       movies
     end
       #self.get_page_by_genre.css(".table tr").drop(1).each do |row|
-        #movie = {
-        #  :title => row.css("a.unstyled-articleLink").text,
-        #  :rating => row.css(".tMeterScore").text.gsub("%", ""),
-        #  :link => row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
-        #   }
 
-        # end
 
-    def get_synopsis(movie)
-      link = 'https://www.rottentomatoes.com/' + movie.link
-      #link = BASE_URL + movie[:link]
-      synopsis_in = Nokogiri::HTML(open(link))
-      movie.synopsis = synopsis_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+    def self.scrape_synopsis(link)
+      #link = 'https://www.rottentomatoes.com/' + movie[:link]
+      link = BASE_URL + movie[:link]
+      page = Nokogiri::HTML(open(link))
+      movie.synopsis = page.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     end
 
 
