@@ -7,4 +7,4 @@ require_relative '../config/environment'
 # require_relative '../lib/movie/scraper.rb'
 
 
-MovieFinder::Cli.new.call
+Cli.new.call

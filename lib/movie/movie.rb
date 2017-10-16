@@ -1,8 +1,4 @@
-require_relative './scraper.rb'
-require_relative './cli.rb'
-
-module  MovieFinder
-  class Movie
+class Movie
     attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
 
@@ -42,5 +38,5 @@ module  MovieFinder
       @@all.find_all { |n| n.title.downcase == title.downcase }
     end
 
-  end
+
 end

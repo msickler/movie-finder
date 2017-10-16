@@ -1,8 +1,7 @@
-require_relative './scraper.rb'
-require_relative './movie.rb'
+require_relative '../movie/scraper.rb'
+require_relative '../movie/movie.rb'
 
-module  MovieFinder
-  class Cli
+class Cli
     attr_accessor :scraper, :movie
 
     def call
@@ -27,7 +26,7 @@ module  MovieFinder
       input = gets.strip.downcase
       @genre = input
        if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
-        MovieFinder::Movie.list_all
+        Movie.list_all
         select_movie
        else
          puts "Now now, that's not a genre we mentioned."
@@ -36,7 +35,7 @@ module  MovieFinder
          @genre = input
       end
       if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
-            MovieFinder::Movie.all
+            Movie.list_all
             select_movie
           else
              call
@@ -49,8 +48,8 @@ module  MovieFinder
       puts "But no typos or this won't work"
       input = gets.strip.downcase
       @movie = input
-      if MovieFinder::Movie.find_synopsis(movie) != nil
-        MovieFinder::Movie.find_synopsis(movie)
+      if Movie.find_synopsis(movie) != nil
+        Movie.find_synopsis(movie)
       else
         puts "That's not in our list"
       end
@@ -64,7 +63,7 @@ module  MovieFinder
       if input == "Find by name"
         puts "Great, what name?"
         input = gets.strip.downcase
-        MovieFinder::Movie.find_by_name(input)
+        Movie.find_by_name(input)
       else
         randomize
       end
@@ -75,7 +74,7 @@ module  MovieFinder
       puts "Just say 'OK'"
       input = gets.strip
       if input == "OK"
-        MovieFinder::Movie.random
+        Movie.random
       else
         puts "Or we can Exit or Restart?"
         input = gets.strip.downcase
@@ -87,5 +86,5 @@ module  MovieFinder
       end
     end
 
-  end
+
 end

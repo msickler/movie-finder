@@ -1,15 +1,15 @@
-  class Scraper
+class Scraper
     attr_accessor :genre, :movie
     #BASE_URL = 'https://www.rottentomatoes.com/'
 
-    #def initialize(genre= nil, movie= nil)
-    #  @gnere = genre
-    #  @movie = movie
-    #end
+    def initialize(genre= nil, movie= nil)
+      @genre = genre
+      @movie = movie
+    end
 
     def get_page_by_genre(genre)
-      if genre == "action"
-        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
+      if @genre == "action"
+        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
       elsif genre == "comedy"
         doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_comedy_movies/"))
       elsif genre == "documentary"
@@ -31,13 +31,13 @@
 
     def new_with_attributes(doc)
       #self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
-        new = doc.search(".table tr").drop(1).each do |row|
-        movie = MovieFinder::Movie.new
+        new = @doc.search(".table tr").drop(1).each do |row|
+        movie = Movie.new
         movie.rating = row.css(".tMeterScore").text.gsub("%", "")
         movie.title = row.css("a.unstyled-articleLink").text
         movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
       end
-      MovieFinder::Movie.all
+      Movie.all
       #self.get_page_by_genre.css(".table tr").drop(1).each do |row|
         #movie = {
         #  :title => row.css("a.unstyled-articleLink").text,
