@@ -1,4 +1,3 @@
-
 require 'bundler'
 Bundler.require
 
@@ -8,4 +7,5 @@ require 'open-uri'
 
 require_relative '../lib/movie/scraper'
 require_relative '../lib/movie/cli'
-require_relative '../lib/movie/genre'
+require_relative '../lib/movie/movie'
+require_relative '../lib/movie/version'

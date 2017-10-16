@@ -1,10 +1,3 @@
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
-require_relative './cli.rb'
-require_relative './movie.rb'
-
-module MovieFinder
   class Scraper
     attr_accessor :genre, :movie
     #BASE_URL = 'https://www.rottentomatoes.com/'
@@ -63,5 +56,5 @@ module MovieFinder
       movie.synopsis = synopsis_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
     end
 
-  end
+
 end
