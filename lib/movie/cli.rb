@@ -50,12 +50,12 @@ class Cli
 
     def select_movie
       puts "Which movie interests you?"
-      puts "Type me the name and I'll tell you about it"
+      puts "Type me the name and I'll find you its synopsis"
       puts "But no typos or this won't work"
       input = gets.strip.downcase
-      @movie = input
-      if Movie.find_synopsis(movie) != nil
-        Movie.find_synopsis(movie)
+      @title = input
+      if Movie.find_synopsis(@title) != nil
+        Movie.find_synopsis(@title)
       else
         puts "That's not in our list"
       end
@@ -63,13 +63,14 @@ class Cli
     end
 
     def find
-      puts "You can search here too"
+      puts "You can search titles here too"
       puts "Say 'Find by name'"
       input = gets.strip
       if input == "Find by name"
         puts "Great, what name?"
         input = gets.strip.downcase
-        Movie.find_by_name(input)
+        @title = input
+        Movie.find_by_name(@title)
       else
         randomize
       end

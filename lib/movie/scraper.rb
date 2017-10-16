@@ -56,6 +56,7 @@ class Scraper
       link = BASE_URL + movie[:link]
       page = Nokogiri::HTML(open(link))
       movie.synopsis = page.css("#movieSynopsis .movie_synopsis clamp clamp-6").text
+      movie.synopsis
     end
 
 

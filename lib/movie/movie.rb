@@ -24,8 +24,8 @@ class Movie
     #end
 
     def self.find_synopsis(title)
-      @@all.detect do |t| if t.title.downcase == title.downcase
-        Scraper.get_synopsis(title)
+      @@all.detect do |movie| if movie[:title].downcase == title.downcase
+        Scraper.scrape_synopsis(movie[:link])
         else
          nil
        end
@@ -38,7 +38,7 @@ class Movie
     end
 
     def self.find_by_name(title)
-      @@all.find_all { |n| n.title.downcase == title.downcase }
+      @@all.find_all { |movie| movie[:title].downcase == title.downcase }
     end
 
 
