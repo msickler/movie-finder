@@ -8,6 +8,8 @@ class Cli
       puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
       start
       make_movies
+      display_movies
+      select_movie
     end
 
     def start
@@ -46,6 +48,15 @@ class Cli
     def make_movies
       movies_array = Scraper.new_movie_list(@doc)
       Movie.create_from_collection(movies_array)
+    end
+
+    def display_movies
+      Movie.all.each do |movie|
+        puts "#{movie.title.upcase}"
+        puts "Rating: #{movie.rating}"
+        puts "Link: #{movie.link}"
+        puts "------------------------"
+      end
     end
 
     def select_movie

@@ -37,9 +37,9 @@ class Scraper
         movies_hash = {}
         movie = @doc.css(".table tr").each do |row|
           movies_hash = {
-            :title => row.css("a.unstyled-articleLink").text,
-            :rating => row.css(".tMeterScore").text.gsub("%", ""),
-            :link => row.css("a.unstyled-articleLink").attribute("href").value
+            :title => row.css(".unstyled").text,
+            :rating => row.css(".tMeterScore").text.gsub("%", "")
+            #:link => row.css("a").attribute("href").value.sub("/", "")
           }
           movies << movies_hash
         #movie.rating = row.css(".tMeterScore").text.gsub("%", "")
