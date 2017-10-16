@@ -75,7 +75,7 @@ class Cli
       else
         puts "That's not in our list"
       end
-      find
+
     end
 
     #def select_movie
@@ -97,13 +97,11 @@ class Cli
       puts "You can search titles here too"
       puts "Say 'Find by name'"
       input = gets.strip
-      if input == "Find by name"
+      if input == "Find by name" || input == "find by name"
         puts "Great, what name?"
         input = gets.strip.downcase
         @title = input
         Movie.find_by_name(@title)
-      else
-        randomize
       end
     end
 
@@ -111,8 +109,12 @@ class Cli
       puts "We can select one movie for you, if you like"
       puts "Just say 'OK'"
       input = gets.strip
-      if input == "OK"
-        Movie.random
+      if input == "OK" || input == "ok" || input == "Ok"
+        random_movie = Movie.random
+        puts "Our computers have decided you should watch..."
+        puts "------------------ //// drum-roll //// ------------------"
+        puts "#{random_movie.upcase}"
+        puts "--------------------------------------------------------------"
       else
         puts "Or we can Exit or Restart?"
         input = gets.strip.downcase

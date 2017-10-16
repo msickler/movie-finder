@@ -32,8 +32,8 @@ class Movie
     #end
 
     def self.random
-      random_movie = self.all.sample
-      random_movie
+      random_movie = self.all.sample #[rand(self.all.length)]
+      random_movie.title
     end
 
     def self.find_by_name(title)
