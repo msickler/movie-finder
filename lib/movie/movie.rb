@@ -2,23 +2,28 @@ class Movie
     attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
 
-    def initialize(title = nil, rating= nil, link = nil, synopsis= nil)
-      @title = title
-      @rating = rating
-      @link = link
-      @synopsis = synopsis
+    def initialize(movie_hash, synopsis= nil)
+      movie_hash.each {|key, value| self.send("#{key}=", value)}
+      self
       @@all << self
+      @synopsis = synopsis
     end
+
+    def self.create_from_collection(movies_array)
+      movies_array.each {|movie| Movie.new(movie)}
+    end
+
+
 
     def self.all
       @@all
     end
 
-    def self.list_all
-      @@all.each do |movie|
-        puts "#{movie.title.capitalize} - #{movie.rating}"
-      end
-    end
+    #def self.list_all
+    #  @@all.each do |movie|
+    #    puts "#{movie.title.capitalize} - #{movie.rating}"
+    #  end
+    #end
 
     def self.find_synopsis(title)
       @@all.detect do |t| if t.title.downcase == title.downcase

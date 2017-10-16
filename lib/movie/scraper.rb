@@ -31,7 +31,7 @@ class Scraper
       @doc
     end
 
-    def new_with_attributes(doc)
+    def self.new_with_attributes(doc)
       #self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
         movies = []
         movies_hash = {}
