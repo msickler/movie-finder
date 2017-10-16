@@ -1,3 +1,9 @@
+require 'pry'
+require 'nokogiri'
+require 'open-uri'
+require_relative './cli.rb'
+require_relative './movie.rb'
+
 module MovieFinder
   class Scraper
     attr_accessor :genre, :movie
@@ -9,7 +15,7 @@ module MovieFinder
     end
 
     def get_page_by_genre(genre)
-      if genre == "Action"
+      if genre == "action"
         Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
       elsif genre == "Comedy"
         Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_comedy_movies/"))
@@ -32,18 +38,20 @@ module MovieFinder
 
     def get_movie_with_attributes
       self.get_page_by_genre.css(".table tr").drop(1).each do |row|
-        movie = MovieFinder::Movie.new
-        movie.rating = row.css(".tMeterScore").text.gsub("%", "")
-        movie.title = row.css("a.unstyled-articleLink").text
-        movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
-      end
+        #movie = MovieFinder::Movie.new
+        #movie.rating = row.css(".tMeterScore").text.gsub("%", "")
+        #movie.title = row.css("a.unstyled-articleLink").text
+        #movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
+      #end
       #self.get_page_by_genre.css(".table tr").drop(1).each do |row|
-        #movie = {
-          #:title => row.css("a.unstyled-articleLink").text
-          #:rating => row.css(".tMeterScore").text.gsub("%", "")
-          #:link => row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
-           #}
-      MovieFinder::Movie.all
+        movie = {
+          :title => row.css("a.unstyled-articleLink").text,
+          :rating => row.css(".tMeterScore").text.gsub("%", ""),
+          :link => row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
+           }
+           binding.pry
+         end
+          MovieFinder::Movie.all << movie
     end
 
     def get_synopsis(movie)

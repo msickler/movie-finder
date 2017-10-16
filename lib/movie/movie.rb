@@ -1,6 +1,9 @@
-module MovieFinder
+require_relative './scraper.rb'
+require_relative './cli.rb'
+
+module  MovieFinder
   class Movie
-    attr_accessor :title, :rating, :synopsis
+    attr_accessor :title, :rating, :synopsis, :scraper
     @@all = []
 
     def initialize(title, rating, synopsis)

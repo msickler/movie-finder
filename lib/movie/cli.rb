@@ -1,5 +1,9 @@
-module MovieFinder
+require_relative './scraper.rb'
+require_relative './movie.rb'
+
+module  MovieFinder
   class Cli
+    attr_accessor :scraper, :movie
 
     def call
       puts "Welcome to Movie Finder, where we help you out when you run out of ideas on what to watch"
@@ -20,19 +24,19 @@ module MovieFinder
       puts "Mystery, my favorite"
       puts "Romance, to really set the mood"
       puts "Fantasy, because Harry Potter"
-      input = gets.strip
+      input = gets.strip.downcase
       @genre = input
-       if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
+       if @genre == "action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
         MovieFinder::Movie.list_all
         select_movie
        else
          puts "Now now, that's not a genre we mentioned."
          puts "Enter genre:"
-         input = gets.strip
+         input = gets.strip.downcase
          @genre = input
       end
-          if input == "Action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
-            MovieFinder::Movie.list_all
+          if input == "action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
+            MovieFinder::Movie.all
             select_movie
           else
              call
