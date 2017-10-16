@@ -6,7 +6,6 @@ class Movie
       movie_hash.each {|key, value| self.send("#{key}=", value)}
       self
       @@all << self
-      @synopsis = synopsis
 
     end
 
@@ -18,20 +17,19 @@ class Movie
       @@all
     end
 
-    #def self.list_all
-    #  @@all.each do |movie|
-    #    puts "#{movie.title.capitalize} - #{movie.rating}"
-    #  end
-    #end
-
-    def self.find_synopsis(title)
-      @@all.detect do |movie| if movie[:title].downcase == title.downcase
-        Scraper.scrape_synopsis(movie[:link])
-        else
-         nil
-       end
-     end
+    def self.find_movie(title)
+      selected = @@all.detect { |movie| movie[:title].downcase == title.downcase }
+      selected
     end
+
+    #def self.find_synopsis(title)
+    #  @@all.detect do |movie| if movie[:title].downcase == title.downcase
+    #    Scraper.scrape_synopsis(movie[:link])
+    #    else
+    #     nil
+    #   end
+     #end
+    #end
 
     def self.random
       random_movie = self.all.sample

@@ -10,6 +10,8 @@ class Cli
       make_movies
       display_movies
       select_movie
+      find
+      randomize
     end
 
     def start
@@ -65,14 +67,30 @@ class Cli
       puts "But no typos or this won't work"
       input = gets.strip.downcase
       @title = input
-      synopsis = Movie.find_synopsis(@title)
-        if synopsis != nil
-          puts "Synopsis: #{movie.synopsis}"
-        else
-          puts "That's not in our list"
+      movie = Movie.find_movie(@title)
+      if movie != nil
+        movie.synopsis = Scraper.scrape_synopsis(movie)
+        puts "Synopsis: #{movie.synopsis} "
+      else
+        puts "That's not in our list"
       end
-     find
+      find
     end
+
+    #def select_movie
+    #  puts "Which movie interests you?"
+    #  puts "Type me the name and I'll find you its synopsis"
+    #  puts "But no typos or this won't work"
+    #  input = gets.strip.downcase
+    #  @title = input
+    #  synopsis = Movie.find_synopsis(@title)
+    #    if synopsis != nil
+    #      puts "Synopsis: #{movie.synopsis}"
+    #    else
+    #      puts "That's not in our list"
+    #  end
+     #find
+    #end
 
     def find
       puts "You can search titles here too"

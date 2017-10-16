@@ -40,7 +40,7 @@ class Scraper
           movies_hash = {
             :title => row.css(".unstyled").text,
             :rating => row.css(".tMeterScore").text.gsub("%", "")
-            #:link => row.css("a").attribute("href").value.sub("/", "")
+            #:link => row.css("a").attribute("href").value
           }
           movies << movies_hash
         #movie.rating = row.css(".tMeterScore").text.gsub("%", "")
