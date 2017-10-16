@@ -3,12 +3,13 @@ require_relative './cli.rb'
 
 module  MovieFinder
   class Movie
-    attr_accessor :title, :rating, :synopsis, :scraper
+    attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
 
-    def initialize(title, rating, synopsis)
+    def initialize(title = nil, rating= nil, link = nil, synopsis= nil)
       @title = title
       @rating = rating
+      @link = link
       @synopsis = synopsis
       @@all << self
     end
@@ -25,7 +26,7 @@ module  MovieFinder
 
     def self.find_synopsis(title)
       @@all.detect do |t| if t.title.downcase == title.downcase
-        MovieFinder::Scraper.get_synopsis(movie)
+        MovieFinder::Scraper.get_synopsis(title)
         else
          nil
        end

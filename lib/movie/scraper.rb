@@ -7,55 +7,56 @@ require_relative './movie.rb'
 module MovieFinder
   class Scraper
     attr_accessor :genre, :movie
-    BASE_URL = 'https://www.rottentomatoes.com/'
+    #BASE_URL = 'https://www.rottentomatoes.com/'
 
-    def initialize(genre= nil, movie= nil)
-      @gnere = genre
-      @movie = movie
-    end
+    #def initialize(genre= nil, movie= nil)
+    #  @gnere = genre
+    #  @movie = movie
+    #end
 
     def get_page_by_genre(genre)
       if genre == "action"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
-      elsif genre == "Comedy"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_comedy_movies/"))
-      elsif genre == "Documentary"
-          Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_documentary_movies/"))
-      elsif genre == "Drama"
-          Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_drama_movies/"))
-      elsif genre == "Horror"
-          Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_horror_movies/"))
-      elsif genre == "Family"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_kids__family_movies/"))
-      elsif genre == "Mystery"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_mystery__suspense_movies/"))
-      elsif genre == "Romance"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_romance_movies/"))
-      else genre == "Fantasy"
-        Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_science_fiction__fantasy_movies/"))
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
+      elsif genre == "comedy"
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_comedy_movies/"))
+      elsif genre == "documentary"
+          doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_documentary_movies/"))
+      elsif genre == "drama"
+          doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_drama_movies/"))
+      elsif genre == "horror"
+          doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_horror_movies/"))
+      elsif genre == "family"
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_kids__family_movies/"))
+      elsif genre == "mystery"
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_mystery__suspense_movies/"))
+      elsif genre == "romance"
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_romance_movies/"))
+      else genre == "fantasy"
+        doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_science_fiction__fantasy_movies/"))
       end
     end
 
-    def get_movie_with_attributes
-      self.get_page_by_genre.css(".table tr").drop(1).each do |row|
-        #movie = MovieFinder::Movie.new
-        #movie.rating = row.css(".tMeterScore").text.gsub("%", "")
-        #movie.title = row.css("a.unstyled-articleLink").text
-        #movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
-      #end
+    def new_with_attributes
+      self.get_page_by_genre(doc).css(".table tr").drop(1).each do |row|
+        movie = MovieFinder::Movie.new
+        movie.rating = row.css(".tMeterScore").text.gsub("%", "")
+        movie.title = row.css("a.unstyled-articleLink").text
+        movie.link = row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
+      end
+      MovieFinder::Movie.all
       #self.get_page_by_genre.css(".table tr").drop(1).each do |row|
-        movie = {
-          :title => row.css("a.unstyled-articleLink").text,
-          :rating => row.css(".tMeterScore").text.gsub("%", ""),
-          :link => row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
-           }
-           binding.pry
-         end
-          MovieFinder::Movie.all << movie
+        #movie = {
+        #  :title => row.css("a.unstyled-articleLink").text,
+        #  :rating => row.css(".tMeterScore").text.gsub("%", ""),
+        #  :link => row.css("a.unstyled-articleLink").attribute("href").value.sub("/", "")
+        #   }
+
+        # end
+
     end
 
     def get_synopsis(movie)
-      link = BASE_URL + movie.link
+      link = 'https://www.rottentomatoes.com/' + movie.link
       #link = BASE_URL + movie[:link]
       synopsis_in = Nokogiri::HTML(open(link))
       movie.synopsis = synopsis_in.css("#movieSynopsis .movie_synopsis clamp clamp-6").text

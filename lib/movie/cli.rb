@@ -26,7 +26,7 @@ module  MovieFinder
       puts "Fantasy, because Harry Potter"
       input = gets.strip.downcase
       @genre = input
-       if @genre == "action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
+       if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
         MovieFinder::Movie.list_all
         select_movie
        else
@@ -35,7 +35,7 @@ module  MovieFinder
          input = gets.strip.downcase
          @genre = input
       end
-          if input == "action" || input ==  "Comedy" || input ==  "Documentary" || input ==  "Drama" || input ==  "Horror" || input == "Family" || input ==  "Mystery" || input ==  "Romance" || input == "Fantasy"
+      if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
             MovieFinder::Movie.all
             select_movie
           else
