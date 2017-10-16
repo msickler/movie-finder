@@ -1,3 +1,7 @@
+#!/usr/bin/env ruby
+
 require_relative '../lib/movie/cli.rb'
+require_relative '../lib/movie/scraper.rb'
+
 
 MovieFinder::Cli.new.call

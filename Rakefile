@@ -1,4 +1,7 @@
-require "bundler/gem_tasks"
+require_relative './config/environment'
+
+require "bundler"
+
 require "rspec/core/rake_task"
 
 RSpec::Core::RakeTask.new(:spec)
