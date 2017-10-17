@@ -79,21 +79,6 @@ class Cli
 
     end
 
-    #def select_movie
-    #  puts "Which movie interests you?"
-    #  puts "Type me the name and I'll find you its synopsis"
-    #  puts "But no typos or this won't work"
-    #  input = gets.strip.downcase
-    #  @title = input
-    #  synopsis = Movie.find_synopsis(@title)
-    #    if synopsis != nil
-    #      puts "Synopsis: #{movie.synopsis}"
-    #    else
-    #      puts "That's not in our list"
-    #  end
-     #find
-    #end
-
     def find
       puts "You can search titles here too"
       puts "Say 'Find by name'"
@@ -103,7 +88,8 @@ class Cli
         input = gets.strip.downcase
         @title = input
         Movie.find_all_by_title(@title)
-        puts "hi -"
+
+        puts "here "
       end
     end
 

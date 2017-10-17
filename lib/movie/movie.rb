@@ -30,10 +30,13 @@ class Movie
   end
 
     def self.find_all_by_title(title)
-      found = @@all.find_all { |movie| movie.title.downcase.include?(title) }
-      binding.pry
-
-      found
+      movie = @@all.find_all { |movie| movie.title.downcase.include?(title) }
+      if movie != nil
+        binding.pry
+        movie.title
+      else
+        nil
+      end
     end
 
     def self.random
