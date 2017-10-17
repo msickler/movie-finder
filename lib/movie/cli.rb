@@ -102,7 +102,8 @@ class Cli
         puts "Great, what name?"
         input = gets.strip.downcase
         @title = input
-        Movie.find_by_name(@title)
+        Movie.find_all_by_title(@title)
+        puts "hi -"
       end
     end
 

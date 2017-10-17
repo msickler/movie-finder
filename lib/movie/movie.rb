@@ -22,31 +22,28 @@ class Movie
         movie.title.downcase.strip == title.downcase.strip ||
         movie.title.split(' ')[0...-1].join(' ').downcase == title.downcase.strip
     end
+    if selected != nil
     selected.link
+  else
+    nil
+  end
   end
 
-    #def self.find_movie(title)
-    #  selected = @@all.detect { |movie| movie[:title].downcase == title.downcase }
-    #  selected
-    #end
+    def self.find_all_by_title(title)
+      found = @@all.find_all { |movie| movie.title.downcase.include?(title) }
+      binding.pry
 
-    #def self.find_synopsis(title)
-    #  @@all.detect do |movie| if movie[:title].downcase == title.downcase
-    #    Scraper.scrape_synopsis(movie[:link])
-    #    else
-    #     nil
-    #   end
-     #end
-    #end
+      found
+    end
 
     def self.random
       random_movie = self.all.sample #[rand(self.all.length)]
       random_movie.title
     end
 
-    def self.find_by_name(title)
-      @@all.find_all { |movie| movie[:title].downcase == title.downcase }
-    end
+    #def self.find_by_name(title)
+    #  @@all.find_all { |movie| movie[:title].downcase == title.downcase }
+    #end
 
 
 end
