@@ -69,10 +69,10 @@ class Cli
       puts "But no typos or this won't work"
       input = gets.strip.downcase
       @title = input
-      movie = Movie.find_movie(@title)
+      movie = Movie.find_by_title(@title)
       if movie != nil
-        movie.synopsis = Scraper.scrape_synopsis(movie)
-        puts "Synopsis: #{movie.synopsis} "
+        Scraper.scrape_synopsis(movie)
+        puts "Synopsis: #{Scraper.scrape_synopsis(movie)} "
       else
         puts "That's not in our list"
       end

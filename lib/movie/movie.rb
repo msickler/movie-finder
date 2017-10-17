@@ -7,7 +7,6 @@ class Movie
       movie_hash.each {|key, value| self.send("#{key}=", value)}
       self
       @@all << self
-
     end
 
     def self.create_from_collection(movies_array)
@@ -19,10 +18,11 @@ class Movie
     end
 
     def self.find_by_title(title)
-      self.all.detect do |movie|
-      movie.title.downcase.strip == title.downcase.strip ||
-      movie.title.split("").first.strip.downcase == title.downcase.strip
+      selected = self.all.detect do |movie|
+        movie.title.downcase.strip == title.downcase.strip ||
+        movie.title.split(' ')[0...-1].join(' ').downcase == title.downcase.strip
     end
+    selected.link
   end
 
     #def self.find_movie(title)

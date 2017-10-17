@@ -2,7 +2,7 @@ require 'pry'
 
 class Scraper
     attr_accessor :genre, :movie, :doc, :link
-    BASE_URL = 'https://www.rottentomatoes.com/'
+    BASE_URL = 'https://www.rottentomatoes.com'
 
     def initialize(genre= nil, movie= nil)
       @genre = genre
@@ -57,10 +57,10 @@ class Scraper
 
     def self.scrape_synopsis(link)
       #link = 'https://www.rottentomatoes.com/' + movie[:link]
-      link = BASE_URL + movie[:link]
-      page = Nokogiri::HTML(open(link))
-      movie.synopsis = page.css(".movie_synopsis").text.strip!
-      movie
+      link_1 = BASE_URL + link
+      page = Nokogiri::HTML(open(link_1))
+      synopsis = page.css(".movie_synopsis").text.strip
+      synopsis
     end
 
 
