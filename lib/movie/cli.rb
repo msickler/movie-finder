@@ -3,7 +3,6 @@ require_relative '../movie/movie.rb'
 require 'nokogiri'
 require 'pry'
 
-
 class Cli
 
     def call
@@ -17,22 +16,22 @@ class Cli
     end
 
     def start
-      puts "What kind of mood are you looking for?"
+      puts "What kind of mood (ahem, genre) are you looking for?"
       puts "We got all the main ones"
-      puts "You name it"
+      puts "You name it..."
       puts "Actually, let me list you our list of genres"
       puts "Action, of course"
       puts "Comedy, obviously"
       puts "Documentary, for the intellectuals"
-      puts "Drama, aka boring or tearjerkers"
+      puts "Drama, but it could be boring"
       puts "Horror, if you like"
       puts "Family, if you must"
-      puts "Mystery, my favorite"
+      puts "Mystery, our favorite"
       puts "Romance, to really set the mood"
-      puts "Fantasy, because Harry Potter"
+      puts "Fantasy, because Harry Potter, Mordor and Jedis"
       input = gets.strip.downcase
       @genre = input
-       if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
+      if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
         @doc = Scraper.get_page_by_genre(@genre)
         make_movies
        else
@@ -47,7 +46,7 @@ class Cli
         else
           call
         end
-    end
+      end
 
     def make_movies
       movies_array = Scraper.new_movie_list(@doc)
@@ -72,24 +71,25 @@ class Cli
       movie = Movie.find_by_title(@title)
       if movie != nil
         Scraper.scrape_synopsis(movie)
+        puts "---------------------------------------------"
         puts "Synopsis: #{Scraper.scrape_synopsis(movie)} "
+        puts "---------------------------------------------"
       else
         puts "That's not in our list"
       end
-
     end
 
     def find
-      puts "You can search titles here too"
-      puts "Say 'Find by name'"
+      puts "You can search titles by words too"
+      puts "Say 'Find'"
       input = gets.strip
-      if input == "Find by name" || input == "find by name"
-        puts "Great, what name?"
+      if input == "Find" || input == "find"
+        puts "Great, what word?"
         input = gets.strip.downcase
         @title = input
-        Movie.find_all_by_title(@title)
-
-        puts "here "
+        titles = Movie.find_all_by_title(@title)
+        puts "Found: #{titles}"
+        puts "---------------------------------------------"
       end
     end
 
@@ -107,12 +107,13 @@ class Cli
         puts "Or we can Exit or Restart?"
         input = gets.strip.downcase
         if input == "exit"
+          puts "Hasta la vista Baby"
           exit
         else input == "restart"
+          puts "Restarting the matrix"
           start
         end
       end
     end
-
 
 end

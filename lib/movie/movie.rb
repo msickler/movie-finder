@@ -21,32 +21,26 @@ class Movie
       selected = self.all.detect do |movie|
         movie.title.downcase.strip == title.downcase.strip ||
         movie.title.split(' ')[0...-1].join(' ').downcase == title.downcase.strip
+      end
+      if selected != nil
+        selected.link
+      else
+        nil
+      end
     end
-    if selected != nil
-    selected.link
-  else
-    nil
-  end
-  end
 
     def self.find_all_by_title(title)
-      movie = @@all.find_all { |movie| movie.title.downcase.include?(title) }
-      if movie != nil
-        binding.pry
-        movie.title
+      found = @@all.find_all { |movie| movie.title.downcase.include?(title) }
+      if found != nil
+        found.to_s.scan(/([A-Z][\w-]*(\s+[A-Z][\w-]*)+)/)
       else
         nil
       end
     end
 
     def self.random
-      random_movie = self.all.sample #[rand(self.all.length)]
+      random_movie = self.all.sample
       random_movie.title
     end
-
-    #def self.find_by_name(title)
-    #  @@all.find_all { |movie| movie[:title].downcase == title.downcase }
-    #end
-
 
 end
