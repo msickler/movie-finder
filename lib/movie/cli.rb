@@ -1,6 +1,7 @@
 require_relative '../movie/scraper.rb'
 require_relative '../movie/movie.rb'
 require 'nokogiri'
+require 'pry'
 
 
 class Cli

@@ -1,3 +1,4 @@
+require 'pry'
 class Movie
     attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
@@ -17,10 +18,17 @@ class Movie
       @@all
     end
 
-    def self.find_movie(title)
-      selected = @@all.detect { |movie| movie.title.downcase == title.downcase }
-      selected
+    def self.find_by_title(title)
+      self.all.detect do |movie|
+      movie.title.downcase.strip == title.downcase.strip ||
+      movie.title.split("").first.strip.downcase == title.downcase.strip
     end
+  end
+
+    #def self.find_movie(title)
+    #  selected = @@all.detect { |movie| movie[:title].downcase == title.downcase }
+    #  selected
+    #end
 
     #def self.find_synopsis(title)
     #  @@all.detect do |movie| if movie[:title].downcase == title.downcase
