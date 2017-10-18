@@ -87,11 +87,10 @@ class Cli
       if input == "Find" || input == "find"
         puts "Great, what word?"
         input = gets.strip.downcase
-        @title = input
-        titles = Movie.find_all_by_title(@title)
-        puts "Found:".colorize(:red) + " #{titles}"
+        @word = input
+        titles = Movie.find_all_by_title(@word)
+        puts "This is what we found:".colorize(:red) + " #{titles}"
         puts "                                         ".underline
-      end
     end
 
     def randomize
@@ -104,6 +103,7 @@ class Cli
         puts "                    //// drum-roll ////                       ".colorize(:blue).underline
         puts "#{random_movie.upcase}".colorize(:red).underline
         puts "                                                               ".underline
+      end
       else
         puts "Now, we can Exit or Restart"
         input = gets.strip.downcase
@@ -112,7 +112,7 @@ class Cli
           exit
         else input == "restart"
           puts "Restarting the matrix..........".colorize(:blue).underline
-          start
+          call
         end
       end
     end

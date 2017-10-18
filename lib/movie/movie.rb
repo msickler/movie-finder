@@ -29,13 +29,9 @@ class Movie
       end
     end
 
-    def self.find_all_by_title(title)
-      found = @@all.find_all { |movie| movie.title.downcase.include?(title) }
-      if found != nil
-        found.to_s.scan(/([A-Z][\w-]*(\s+[A-Z][\w-]*)+)/)
-      else
-        nil
-      end
+    def self.find_all_by_title(word)
+      found = @@all.find_all { |movie| movie.title.downcase.include?(word)}
+        found.to_s.scan(/([A-Z][\w-]*(\s+[A-Z][\w-]*)+)/).map{|i| i.first}
     end
 
     def self.random
