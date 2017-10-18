@@ -6,4 +6,4 @@ Specs:
 - [x] Pull data from an external source
   => The Scraper takes care of this. For each genre it pulls data from its specific page and for each selected movie (if any) it pulls data from that specific movies page. It makes a list of movies by name and by rating.  
 - [x] Implement both list and detail views
-  => The application is a combination of list and detail views itself. List of genres, list of movies by genre, list of those movies by genre by rating, list of matches of movie titles and ratings. The detail views are more about the movie synonpsis, if they pick a movie, the application access that movie's page and returns the description.
+  => The application is a combination of list and detail views itself. List of genres, list of movies by genre, which include the rating and link as details, list of matches of movie titles. The detail views are more about the movie synonpsis, if they pick a movie, the application access that movie's page and returns the description.
