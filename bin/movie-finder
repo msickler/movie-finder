@@ -1,5 +1,3 @@
 #!/usr/bin/env ruby
 
 #require_relative '../lib/now_playing'
-
-#MovieFinder::Cli.new.call

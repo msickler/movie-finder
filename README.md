@@ -2,14 +2,14 @@
 
 Welcome to Movie Finder! Yes, that is exactly what we do. You give us a genre, from our exquisite selection of genres and, good Sir, we will show you the top 100 movies of said genre (at least, according to RottenTomatoes, a very realiable, not Fake News source, in my humble opinion).
 Now, of course you could do that yourself on the blessed RottenTomatoes website, but here we will help you actually pick one movie to watch, as it can get tedious on the very acclaimed website.
-You can search by genre too, we'll give you everything that matches.
-Furthermore, we can provide you with a movie "shuffle" selection, all it takes is to the say the magic word (ahem... the genre) and you've got yourself a title.
+You can search by genre, we'll give you a list that matches.
+Furthermore, we can provide you with a random movie pick, all it takes is to the say the magic word (ahem... the genre) and you've got yourself a title.
 Of course, we would be a bit useless if we couldn't also provide you with a movie synonpsis. We do that too.
 Enjoy!
 
 ## Installation
 
-Make sure you're set up 
+Make sure you're set up
 
 $ bundle install
 

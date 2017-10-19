@@ -1,4 +1,3 @@
-require 'pry'
 class Movie
     attr_accessor :title, :rating, :link, :synopsis, :scraper, :genre
     @@all = []
