@@ -4,6 +4,7 @@ require 'nokogiri'
 require 'colorize'
 
 class Cli
+  GENRES = ['action__adventure', 'comedy', 'documentary', 'drama', 'horror', 'kids__family', 'mystery__suspense', 'romance', 'science_fiction__fantasy' ]
 
     def call
       puts "Welcome to Movie Finder,".colorize(:light_blue) + " we help you out when you run out of ideas on what to watch"
@@ -20,33 +21,27 @@ class Cli
       puts "We got all the main ones"
       puts "You name it..."
       puts "Actually, let me list you our list of genres"
-      puts "Action".colorize(:light_blue) + ", of course"
-      puts "Comedy".colorize(:light_blue) + ", obviously"
-      puts "Documentary".colorize(:light_blue) + ", for the intellectuals"
-      puts "Drama".colorize(:light_blue) + ", but it could be boring"
-      puts "Horror".colorize(:light_blue) + ", if you like"
-      puts "Family".colorize(:light_blue) + ", if you must"
-      puts "Mystery".colorize(:light_blue) + ", our favorite"
-      puts "Romance".colorize(:light_blue) + ", to really set the mood"
-      puts "Fantasy".colorize(:light_blue) + ", because Harry Potter, Mordor and Jedis"
-      input = gets.strip.downcase
-      @genre = input
-      if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
+      puts "1. Action".colorize(:light_blue) + ", of course"
+      puts "2. Comedy".colorize(:light_blue) + ", obviously"
+      puts "3. Documentary".colorize(:light_blue) + ", for the intellectuals"
+      puts "4. Drama".colorize(:light_blue) + ", but it could be boring"
+      puts "5. Horror".colorize(:light_blue) + ", if you like"
+      puts "6. Family".colorize(:light_blue) + ", if you must"
+      puts "7. Mystery".colorize(:light_blue) + ", our favorite"
+      puts "8. Romance".colorize(:light_blue) + ", to really set the mood"
+      puts "9. Fantasy".colorize(:light_blue) + ", because Harry Potter, Mordor and Jedis"
+      input = gets.strip
+      if input.to_i.between?(1, GENRES.length)
+        @genre = GENRES[input.to_i - 1 ]
         @doc = Scraper.get_page_by_genre(@genre)
         make_movies
        else
          puts "Now now, that's not a genre we mentioned."
-         puts "Enter genre:".colorize(:background => :red)
-         input = gets.strip.downcase
-         @genre = input
+         #puts "Enter genre:".colorize(:background => :red)
+         start
       end
-      if @genre == "action" || @genre ==  "comedy" ||  @genre ==  "documentary" ||  @genre ==  "drama" ||  @genre ==  "horror" ||  @genre == "family" ||  @genre ==  "mystery" ||  @genre ==  "romance" ||  @genre == "fantasy"
-          @doc = Scraper.get_page_by_genre(@genre)
-          make_movies
-        else
-          call
-        end
-      end
+
+    end
 
     def make_movies
       movies_array = Scraper.new_movie_list(@doc)

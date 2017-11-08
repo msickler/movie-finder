@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
+#shebang
 
 require_relative '../config/environment'
-
 
 # require_relative '../lib/movie/cli.rb'
 # require_relative '../lib/movie/scraper.rb'
 
 
-Cli.new.call
+x = Cli.new
+x.call

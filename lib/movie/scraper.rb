@@ -10,26 +10,7 @@ class Scraper
     end
 
     def self.get_page_by_genre(genre)
-      if @genre == "action"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_action__adventure_movies/"))
-      elsif genre == "comedy"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_comedy_movies/"))
-      elsif genre == "documentary"
-          @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_documentary_movies/"))
-      elsif genre == "drama"
-          @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_drama_movies/"))
-      elsif genre == "horror"
-          @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_horror_movies/"))
-      elsif genre == "family"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_kids__family_movies/"))
-      elsif genre == "mystery"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_mystery__suspense_movies/"))
-      elsif genre == "romance"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_romance_movies/"))
-      else genre == "fantasy"
-        @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_science_fiction__fantasy_movies/"))
-      end
-      @doc
+      @doc = Nokogiri::HTML(open("https://www.rottentomatoes.com/top/bestofrt/top_100_#{genre}_movies/"))
     end
 
     def self.new_movie_list(doc)
